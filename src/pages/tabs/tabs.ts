@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
+import { IonicPage } from 'ionic-angular';
+import { LIST_PAGE, MAP_PAGE, PICTURE_PAGE } from '../pages.constants';
 
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
-import { HomePage } from '../home/home';
 
+@IonicPage()
 @Component({
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
 
-  tab1Root = HomePage;
-  tab2Root = AboutPage;
-  tab3Root = ContactPage;
+  tab1Root: string = LIST_PAGE;
+  tab2Root: string = MAP_PAGE;
+  tab3Root: string = PICTURE_PAGE;
 
   constructor() {
 
