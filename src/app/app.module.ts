@@ -21,7 +21,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {
+      mode: "ios",
+      tabsPlacement: "top",
+      tabsLayout: "icon-start",
+      tabsHighlight: true
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
