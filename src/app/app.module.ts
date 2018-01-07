@@ -19,7 +19,6 @@ import { FIREBASE_CONFIG  } from './firebase.credentials';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp, {
-      mode: "ios",
       tabsPlacement: "top",
       tabsLayout: "icon-start",
       tabsHighlight: true
