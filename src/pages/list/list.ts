@@ -14,12 +14,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'list.html',
 })
 export class ListPage {
+  toilets: Object[]
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ListPage');
+  ionViewWillLoad() {
+    this.toilets = [
+      { name: 'Toilet A', owner: 'Chersie', description: 'Lorem ipsum dolor set amet!' },
+      { name: 'Toilet B', owner: 'Chersie', description: 'Lorem ipsum dolor set amet!' },
+      { name: 'Toilet C', owner: 'Chersie', description: 'Lorem ipsum dolor set amet!' },
+      { name: 'Toilet D', owner: 'Chersie', description: 'Lorem ipsum dolor set amet!' },
+      { name: 'Toilet E', owner: 'Chersie', description: 'Lorem ipsum dolor set amet!' },
+      { name: 'Toilet F', owner: 'Chersie', description: 'Lorem ipsum dolor set amet!' },
+      { name: 'Toilet G', owner: 'Chersie', description: 'Lorem ipsum dolor set amet!' }
+    ]
   }
 
 }
