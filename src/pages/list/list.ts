@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { ToiletsProvider } from '../../providers/toilets/toilets';
+import { Observable } from 'rxjs/Observable';
+import { Toilet } from '../../models/toilet/toilet.model';
+
 /**
  * Generated class for the ListPage page.
  *
@@ -14,21 +18,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'list.html',
 })
 export class ListPage {
-  toilets: Object[]
+  toilets: Observable<Toilet[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private toiletsProvider: ToiletsProvider) { }
 
   ionViewWillLoad() {
-    this.toilets = [
-      { name: 'Toilet A', owner: 'Chersie', description: 'Lorem ipsum dolor set amet!' },
-      { name: 'Toilet B', owner: 'Chersie', description: 'Lorem ipsum dolor set amet!' },
-      { name: 'Toilet C', owner: 'Chersie', description: 'Lorem ipsum dolor set amet!' },
-      { name: 'Toilet D', owner: 'Chersie', description: 'Lorem ipsum dolor set amet!' },
-      { name: 'Toilet E', owner: 'Chersie', description: 'Lorem ipsum dolor set amet!' },
-      { name: 'Toilet F', owner: 'Chersie', description: 'Lorem ipsum dolor set amet!' },
-      { name: 'Toilet G', owner: 'Chersie', description: 'Lorem ipsum dolor set amet!' }
-    ]
+    this.toilets = this.toiletsProvider
+      .getToilets()
+      .snapshotChanges()
+      .map(changes => {
+        return changes.map(c => ({
+          key: c.payload.key, ...c.payload.val()
+        }))
+      })
   }
 
 }

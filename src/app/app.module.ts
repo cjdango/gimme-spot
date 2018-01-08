@@ -10,6 +10,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { FIREBASE_CONFIG  } from './firebase.credentials';
+import { ToiletsProvider } from '../providers/toilets/toilets';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { FIREBASE_CONFIG  } from './firebase.credentials';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ToiletsProvider
   ]
 })
 export class AppModule {}

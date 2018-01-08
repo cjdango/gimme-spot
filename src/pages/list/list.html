@@ -15,7 +15,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let toilet of toilets">
+    <ion-item *ngFor="let toilet of toilets | async">
       <ion-thumbnail item-start>
         <img src="assets/imgs/logo.png">
       </ion-thumbnail>
