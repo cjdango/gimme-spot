@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
 
 import { ToiletsProvider } from '../../providers/toilets/toilets';
 import { Observable } from 'rxjs/Observable';
@@ -19,13 +19,26 @@ import { Toilet } from '../../models/toilet/toilet.model';
 })
 export class ListPage {
   toilets: Observable<Toilet[]>;
+  private loader: Loading;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
+    public loadingCtrl: LoadingController,
     private toiletsProvider: ToiletsProvider) { }
 
   ionViewWillLoad() {
+
+    this.getToilets();
+  
+    this.loader = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+
+    this.loader.present();
+  }
+
+  getToilets() {
     this.toilets = this.toiletsProvider
       .getToilets()
       .snapshotChanges()
@@ -33,7 +46,11 @@ export class ListPage {
         return changes.map(c => ({
           key: c.payload.key, ...c.payload.val()
         }))
-      })
+      });
+
+    this.toilets.subscribe(ref => {
+      this.loader.dismiss();
+    });
   }
 
 }

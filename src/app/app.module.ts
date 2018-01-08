@@ -8,6 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { FIREBASE_CONFIG  } from './firebase.credentials';
 import { ToiletsProvider } from '../providers/toilets/toilets';
@@ -25,7 +26,8 @@ import { ToiletsProvider } from '../providers/toilets/toilets';
       tabsHighlight: true
     }),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
